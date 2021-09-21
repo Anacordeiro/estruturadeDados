@@ -17,14 +17,14 @@ class OperacaoFabrica(object):
 
 
 class Calculadora (object):
-    def calcular(self, n1, n2, operador):
+    def calcular(self, valor1, valor2, operador):
         operacaoFabrica = OperacaoFabrica()
         operacao = operacaoFabrica.criar(operador)
  
         if (operacao == None):
           return 0
         else:
-          resultado = operacao.executar(n1, n2)
+          resultado = operacao.executar(valor1, valor2)
           return resultado
       
       
@@ -33,29 +33,24 @@ class Calculadora (object):
 class Operacao():
     __metaclass__ = ABCMeta
     @abstractmethod
-    def executar(self, n1, n2):
+    def executar(self, valor1, valor2):
      pass
 
 
 class Soma(Operacao):
-     def executar(self, n1, n2):
-         resultado = n1 + n2
+     def executar(self, valor1, valor2):
+         resultado = valor1 + valor2
          return resultado
 
 class Subtracao(Operacao):
-     def executar(self, n1, n2):
-         resultado = n1 - n2
+     def executar(self, valor1, valor2):
+         resultado = valor1 - valor2
          return resultado
-
-class Multiplicacao(Operacao):
-      def executar(self, n1, n2):
-          resultado = n1 * n2
-          return resultado
 
 
 class Divisao(Operacao):
-      def executar(self, n1, n2):
-          resultado = n1 / n2
+      def executar(self, valor1, valor2):
+          resultado = valor1 / valor2
           return resultado
 
 
@@ -66,10 +61,6 @@ class Testes(TestCase):
         result = calculadorSom.calcular(2,3, 'soma')
         self.assertEqual(result, 5)
         
-
-      def test_multiplicacao(self):
-         calculadorMult = Calculadora()
-         self.assertEqual (calculadorMult.calcular(2,5, 'multiplicacao'), 10)
 
       def test_divisao(self):
          calculadorDiv = Calculadora()
